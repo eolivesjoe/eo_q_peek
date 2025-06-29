@@ -6,7 +6,9 @@ namespace thumbnail
     bool setupThumbnail(HWND dest, HWND src, HTHUMBNAIL& thumb)
     {
         if (FAILED(DwmRegisterThumbnail(dest, src, &thumb)))
+        {
             return false;
+        }
 
         RECT destRect = { 0, 0, THUMB_WIDTH, THUMB_HEIGHT };
         DWM_THUMBNAIL_PROPERTIES props = {};
