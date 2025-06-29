@@ -1,43 +1,19 @@
-#include <thread>
-#include <chrono>
-#include <string>
+#include "app.h"
+#include "logger.h"
 
-#include "window.h"
-#include "thumbnail.h"
-#include "utils.h"
-
-
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR lpCmdLine, int)
+int main(int argc, char* argv[]) 
 {
-    HWND overlay_hwnd = nullptr;
-    HWND target_hwnd = nullptr;
-    HTHUMBNAIL thumbnail = nullptr;
-    const char* app_name = lpCmdLine;
+    logger::init();
 
-    target_hwnd = util::findWindowByTitle(app_name);
-    if (!target_hwnd)
+    const char* appName = (argc > 1) ? argv[1] : nullptr;
+
+    app::App app;
+    if (!app.init(appName)) 
     {
+        logger::error("Failed to initialise app.");
         return 1;
     }
 
-    while (true)
-    {
-        HWND foreground_window = GetForegroundWindow();
-
-        if (foreground_window != target_hwnd && !overlay_hwnd)
-        {
-            overlay_hwnd = window::createWindow(hInstance);
-            thumbnail::setupThumbnail(overlay_hwnd, target_hwnd, thumbnail);
-        }
-        else if (foreground_window == target_hwnd && overlay_hwnd)
-        {
-            thumbnail::cleanupThumbnail(overlay_hwnd, thumbnail);
-            overlay_hwnd = nullptr;
-            thumbnail = nullptr;
-        }
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    }
-
+    app.run();
     return 0;
 }

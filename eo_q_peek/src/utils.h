@@ -2,8 +2,8 @@
 
 #include <windows.h>
 
-constexpr int THUMB_WIDTH = 320;
-constexpr int THUMB_HEIGHT = 180;
+constexpr int THUMB_WIDTH = 400;
+constexpr int THUMB_HEIGHT = 225;
 
 namespace util
 {

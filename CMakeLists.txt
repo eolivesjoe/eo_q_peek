@@ -10,12 +10,12 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/lib)
 
 add_executable(eo_q_peek
     eo_q_peek/src/main.cpp
+    eo_q_peek/src/app.cpp
     eo_q_peek/src/window.cpp
     eo_q_peek/src/thumbnail.cpp
     eo_q_peek/src/utils.cpp
+    eo_q_peek/src/logger.cpp
 )
-
-set_target_properties(eo_q_peek PROPERTIES WIN32_EXECUTABLE TRUE)
 
 target_link_libraries(eo_q_peek
     dwmapi

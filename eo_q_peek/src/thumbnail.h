@@ -3,10 +3,18 @@
 #include <windows.h>
 #include <dwmapi.h>
 
-#pragma comment(lib, "dwmapi.lib")
-
 namespace thumbnail
 {
-    bool setupThumbnail(HWND dest, HWND src, HTHUMBNAIL& thumb);
-    void cleanupThumbnail(HWND dest, HTHUMBNAIL thumb);
+    class Thumbnail
+    {
+    public:
+        ~Thumbnail();
+
+        bool init(HWND dest, HWND src);
+        void cleanup();
+
+    private:
+        HWND m_dest = nullptr;
+        HTHUMBNAIL m_thumb = nullptr;
+    };
 } // namespace thumbnail

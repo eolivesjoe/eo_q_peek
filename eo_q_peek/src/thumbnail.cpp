@@ -1,11 +1,13 @@
-#include "utils.h"
 #include "thumbnail.h"
+#include "utils.h"
 
 namespace thumbnail
 {
-    bool setupThumbnail(HWND dest, HWND src, HTHUMBNAIL& thumb)
+    bool Thumbnail::init(HWND dest, HWND src)
     {
-        if (FAILED(DwmRegisterThumbnail(dest, src, &thumb)))
+        m_dest = dest;
+
+        if (FAILED(DwmRegisterThumbnail(dest, src, &m_thumb)))
         {
             return false;
         }
@@ -16,18 +18,25 @@ namespace thumbnail
         props.fVisible = TRUE;
         props.rcDestination = dest_rect;
 
-        return SUCCEEDED(DwmUpdateThumbnailProperties(thumb, &props));
+        return SUCCEEDED(DwmUpdateThumbnailProperties(m_thumb, &props));
     }
 
-    void cleanupThumbnail(HWND dest, HTHUMBNAIL thumb)
+    void Thumbnail::cleanup()
     {
-        if (thumb)
+        if (m_thumb)
         {
-            DwmUnregisterThumbnail(thumb);
+            DwmUnregisterThumbnail(m_thumb);
+            m_thumb = nullptr;
         }
-        if (dest)
+        if (m_dest)
         {
-            DestroyWindow(dest);
+            DestroyWindow(m_dest);
+            m_dest = nullptr;
         }
+    }
+
+    Thumbnail::~Thumbnail()
+    {
+        cleanup();
     }
 }
