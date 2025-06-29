@@ -5,10 +5,10 @@ int main(int argc, char* argv[])
 {
     logger::init();
 
-    const char* appName = (argc > 1) ? argv[1] : nullptr;
+    const char* app_name = (argc > 1) ? argv[1] : nullptr;
 
     app::App app;
-    if (!app.init(appName)) 
+    if (!app.init(app_name)) 
     {
         logger::error("Failed to initialise app.");
         return 1;
