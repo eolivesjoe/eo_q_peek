@@ -10,11 +10,11 @@ namespace thumbnail
             return false;
         }
 
-        RECT destRect = { 0, 0, THUMB_WIDTH, THUMB_HEIGHT };
+        RECT dest_rect = { 0, 0, THUMB_WIDTH, THUMB_HEIGHT };
         DWM_THUMBNAIL_PROPERTIES props = {};
         props.dwFlags = DWM_TNP_VISIBLE | DWM_TNP_RECTDESTINATION;
         props.fVisible = TRUE;
-        props.rcDestination = destRect;
+        props.rcDestination = dest_rect;
 
         return SUCCEEDED(DwmUpdateThumbnailProperties(thumb, &props));
     }

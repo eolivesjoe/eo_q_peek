@@ -9,10 +9,10 @@ namespace util
 
     void getScreenBottomRight(int& x, int& y)
     {
-        RECT m_desktop;
-        const HWND m_hDesktop = GetDesktopWindow();
-        GetWindowRect(m_hDesktop, &m_desktop);
-        x = m_desktop.right - THUMB_WIDTH;
-        y = m_desktop.bottom - THUMB_HEIGHT;
+        RECT m_desktop_rect;
+        const HWND m_desktop = GetDesktopWindow();
+        GetWindowRect(m_desktop, &m_desktop_rect);
+        x = m_desktop_rect.right - THUMB_WIDTH;
+        y = m_desktop_rect.bottom - THUMB_HEIGHT;
     }
 }

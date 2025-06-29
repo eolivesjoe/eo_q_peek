@@ -5,7 +5,7 @@ namespace window
 {
     HWND createWindow(HINSTANCE hInstance)
     {
-        const char CLASS_NAME[] = "OverlayWindow";
+        const char CLASS_NAME[] = "Window";
 
         WNDCLASS wc = {};
         wc.lpfnWndProc = DefWindowProc;
