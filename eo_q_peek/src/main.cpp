@@ -1,8 +1,9 @@
+#include <thread>
+#include <chrono>
+
 #include "window.h"
 #include "thumbnail.h"
 #include "utils.h"
-#include <thread>
-#include <chrono>
 
 HWND g_overlayHwnd = nullptr;
 HWND g_targetHwnd = nullptr;
@@ -13,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int)
     g_targetHwnd = util::findWindowByTitle(TARGET_WINDOW_TITLE);
     if (!g_targetHwnd)
     {
-        MessageBox(nullptr, "Quake window not found.", "Error", MB_OK);
+        MessageBox(nullptr, "Window not found.", "Error", MB_OK);
         return 1;
     }
 
