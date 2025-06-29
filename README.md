@@ -2,7 +2,7 @@
 
 Creates a small always-on-top window that shows a live thumbnail preview of an application window whenever it is not focused. I use it to keep an eye on games while doing other things. 
 
- - eo_q_peek.exe <Application name>
+  eo_q_peek.exe "Application Name" i.e eo_q_peek.exe "Quake Live"
  
 ## Features
 
