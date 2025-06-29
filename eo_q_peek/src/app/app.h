@@ -1,7 +1,7 @@
 #pragma once
 
-#include "window.h"
-#include "thumbnail.h"
+#include "../window/window.h"
+#include "../thumbnail/thumbnail.h"
 
 namespace app
 {
@@ -16,4 +16,4 @@ namespace app
 		class thumbnail::Thumbnail m_thumbnail;
 		HWND m_target = nullptr;
 	};
-}
+} // namespace app

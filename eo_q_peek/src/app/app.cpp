@@ -1,8 +1,8 @@
 #include <windows.h>
 
 #include "app.h"
-#include "logger.h"
-#include "utils.h"
+#include "../logger/logger.h"
+#include "../utils/utils.h"
 
 namespace app
 {

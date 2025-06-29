@@ -10,11 +10,11 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/lib)
 
 add_executable(eo_q_peek
     eo_q_peek/src/main.cpp
-    eo_q_peek/src/app.cpp
-    eo_q_peek/src/window.cpp
-    eo_q_peek/src/thumbnail.cpp
-    eo_q_peek/src/utils.cpp
-    eo_q_peek/src/logger.cpp
+    eo_q_peek/src/app/app.cpp
+    eo_q_peek/src/window/window.cpp
+    eo_q_peek/src/thumbnail/thumbnail.cpp
+    eo_q_peek/src/utils/utils.cpp
+    eo_q_peek/src/logger/logger.cpp
 )
 
 target_link_libraries(eo_q_peek

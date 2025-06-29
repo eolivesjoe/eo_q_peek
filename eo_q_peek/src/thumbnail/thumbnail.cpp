@@ -1,8 +1,13 @@
 #include "thumbnail.h"
-#include "utils.h"
+#include "../utils/utils.h"
 
 namespace thumbnail
 {
+    Thumbnail::~Thumbnail()
+    {
+        cleanup();
+    }
+
     bool Thumbnail::init(HWND dest, HWND src)
     {
         m_dest = dest;
@@ -33,10 +38,5 @@ namespace thumbnail
             DestroyWindow(m_dest);
             m_dest = nullptr;
         }
-    }
-
-    Thumbnail::~Thumbnail()
-    {
-        cleanup();
     }
 }

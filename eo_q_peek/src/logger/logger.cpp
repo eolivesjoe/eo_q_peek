@@ -1,7 +1,8 @@
 #include <iostream>
 #include "logger.h"
 
-namespace logger {
+namespace logger 
+{
     void init()
     {
         std::ios::sync_with_stdio(false);
