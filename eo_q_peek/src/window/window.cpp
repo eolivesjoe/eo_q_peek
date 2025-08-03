@@ -3,12 +3,12 @@
 
 namespace window
 {
-	bool Window::create(HINSTANCE hInstance)
+	bool Window::Create(HINSTANCE hInstance)
 	{
 		const char CLASS_NAME[] = "Window";
 
 		WNDCLASS wc = {};
-		wc.lpfnWndProc = overlayProc;
+		wc.lpfnWndProc = OverlayProc;
 		wc.lpfnWndProc = DefWindowProc;
 		wc.hInstance = hInstance;
 		wc.lpszClassName = CLASS_NAME;
@@ -16,7 +16,7 @@ namespace window
 		RegisterClass(&wc);
 
 		int x, y;
-		util::getScreenBottomRight(x, y);
+		util::GetScreenBottomRight(x, y);
 
 		m_hwnd = CreateWindowEx(
 			WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE,
@@ -25,14 +25,14 @@ namespace window
 			x, y, THUMB_WIDTH, THUMB_HEIGHT,
 			nullptr, nullptr, hInstance, nullptr);
 
-		LONG ex_style = GetWindowLong(m_hwnd, GWL_EXSTYLE);
-		SetWindowLong(m_hwnd, GWL_EXSTYLE, ex_style | WS_EX_LAYERED | WS_EX_TRANSPARENT);
+		LONG exStyle = GetWindowLong(m_hwnd, GWL_EXSTYLE);
+		SetWindowLong(m_hwnd, GWL_EXSTYLE, exStyle | WS_EX_LAYERED | WS_EX_TRANSPARENT);
 		SetLayeredWindowAttributes(m_hwnd, 0, 255, LWA_ALPHA);
 
 		return m_hwnd != nullptr;
 	}
 
-	void Window::show()
+	void Window::Show()
 	{
 		if (m_hwnd)
 		{
@@ -40,12 +40,12 @@ namespace window
 		}
 	}
 
-	HWND Window::hwnd() const
+	HWND Window::Hwnd() const
 	{
 		return m_hwnd;
 	}
 
-	LRESULT CALLBACK Window::overlayProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+	LRESULT CALLBACK Window::OverlayProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 		switch (msg)
 		{
 		case WM_PAINT:

@@ -5,10 +5,10 @@ namespace thumbnail
 {
     Thumbnail::~Thumbnail()
     {
-        cleanup();
+        Cleanup();
     }
 
-    bool Thumbnail::init(HWND dest, HWND src)
+    bool Thumbnail::Init(HWND dest, HWND src)
     {
         m_dest = dest;
 
@@ -17,16 +17,16 @@ namespace thumbnail
             return false;
         }
 
-        RECT dest_rect = { 0, 0, THUMB_WIDTH, THUMB_HEIGHT };
+        RECT destRect = { 0, 0, THUMB_WIDTH, THUMB_HEIGHT };
         DWM_THUMBNAIL_PROPERTIES props = {};
         props.dwFlags = DWM_TNP_VISIBLE | DWM_TNP_RECTDESTINATION;
         props.fVisible = TRUE;
-        props.rcDestination = dest_rect;
+        props.rcDestination = destRect;
 
         return SUCCEEDED(DwmUpdateThumbnailProperties(m_thumb, &props));
     }
 
-    void Thumbnail::cleanup()
+    void Thumbnail::Cleanup()
     {
         if (m_thumb)
         {

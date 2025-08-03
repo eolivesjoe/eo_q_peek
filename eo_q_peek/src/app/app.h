@@ -8,8 +8,8 @@ namespace app
 	class App
 	{
 	public:
-		bool init(const char* appName);
-		void run();
+		bool Init(const char* appName);
+		void Run();
 
 	private:
 		class window::Window m_window;

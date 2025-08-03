@@ -10,8 +10,8 @@ namespace thumbnail
     public:
         ~Thumbnail();
 
-        bool init(HWND dest, HWND src);
-        void cleanup();
+        bool Init(HWND dest, HWND src);
+        void Cleanup();
 
     private:
         HWND m_dest = nullptr;
