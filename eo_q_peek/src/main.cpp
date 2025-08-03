@@ -3,17 +3,17 @@
 
 int main(int argc, char* argv[]) 
 {
-    logger::init();
+    logger::Init();
 
-    const char* app_name = (argc > 1) ? argv[1] : nullptr;
+    const char* appName = (argc > 1) ? argv[1] : nullptr;
 
     app::App app;
-    if (!app.init(app_name)) 
+    if (!app.Init(appName)) 
     {
-        logger::error("Failed to initialise app.");
+        logger::Error("Failed to initialise app.");
         return 1;
     }
 
-    app.run();
+    app.Run();
     return 0;
 }

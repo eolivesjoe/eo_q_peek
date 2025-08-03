@@ -6,41 +6,41 @@
 
 namespace app
 {
-    bool App::init(const char* appName)
+    bool App::Init(const char* appName)
     {
         if (!appName || appName[0] == '\0')
         {
-            logger::error("No app name provided.");
+            logger::Error("No app name provided.");
             return false;
         }
 
-        m_target = util::findWindowByTitle(appName);
+        m_target = util::FindWindowByTitle(appName);
         if (!m_target)
         {
-            logger::error("Could not find target window.");
+            logger::Error("Could not find target window.");
             return false;
         }
 
         HINSTANCE hInstance = GetModuleHandle(nullptr);
-        if (!m_window.create(hInstance))
+        if (!m_window.Create(hInstance))
         {
-            logger::error("Failed to create window.");
+            logger::Error("Failed to create window.");
             return false;
         }
 
-        m_window.show();
+        m_window.Show();
 
-        if (!m_thumbnail.init(m_window.hwnd(), m_target))
+        if (!m_thumbnail.Init(m_window.Hwnd(), m_target))
         {
-            logger::error("Failed to initialise thumbnail.");
+            logger::Error("Failed to initialise thumbnail.");
             return false;
         }
 
-        logger::info("App initialised.");
+        logger::Info("App initialised.");
         return true;
     }
 
-    void App::run()
+    void App::Run()
     {
         MSG msg = {};
         while (GetMessage(&msg, nullptr, 0, 0)) {
@@ -48,6 +48,6 @@ namespace app
             DispatchMessage(&msg);
         }
 
-        logger::info("Exiting message loop.");
+        logger::Info("Exiting message loop.");
     }
 }

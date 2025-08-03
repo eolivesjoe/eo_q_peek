@@ -6,12 +6,12 @@ namespace window
     class Window
     {
     public:
-        bool create(HINSTANCE hInstance);
-        void show();
-        HWND hwnd() const;
+        bool Create(HINSTANCE hInstance);
+        void Show();
+        HWND Hwnd() const;
 
     private:
         HWND m_hwnd = nullptr;
-        static LRESULT CALLBACK overlayProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+        static LRESULT CALLBACK OverlayProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
     };
 } // namespace window

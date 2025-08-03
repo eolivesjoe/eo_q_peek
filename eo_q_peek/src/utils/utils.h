@@ -7,6 +7,6 @@ constexpr int THUMB_HEIGHT = 225;
 
 namespace util
 {
-    HWND findWindowByTitle(const char* title);
-    void getScreenBottomRight(int& x, int& y);
+    HWND FindWindowByTitle(const char* title);
+    void GetScreenBottomRight(int& x, int& y);
 } // namespace util
