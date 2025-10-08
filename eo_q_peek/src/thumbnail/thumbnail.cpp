@@ -39,4 +39,28 @@ namespace thumbnail
             m_dest = nullptr;
         }
     }
+
+    void Thumbnail::Show()
+    {
+        if (!m_thumb) return;
+
+        DWM_THUMBNAIL_PROPERTIES props = {};
+        props.dwFlags = DWM_TNP_VISIBLE;
+        props.fVisible = TRUE;
+
+		GetClientRect(m_dest, &props.rcDestination);
+        DwmUpdateThumbnailProperties(m_thumb, &props);
+	}
+
+    void Thumbnail::Hide()
+    {
+        if (!m_thumb) return;
+
+        DWM_THUMBNAIL_PROPERTIES props = {};
+        props.dwFlags = DWM_TNP_VISIBLE;
+        props.fVisible = FALSE;
+
+        GetClientRect(m_dest, &props.rcDestination);
+        DwmUpdateThumbnailProperties(m_thumb, &props);
+	}
 }

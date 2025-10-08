@@ -12,6 +12,8 @@ namespace thumbnail
 
         bool Init(HWND dest, HWND src);
         void Cleanup();
+        void Show();
+        void Hide();
 
     private:
         HWND m_dest = nullptr;

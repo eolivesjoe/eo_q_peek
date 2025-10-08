@@ -8,12 +8,17 @@ namespace logger
         std::ios::sync_with_stdio(false);
     }
 
-    void Info(const std::string& msg)
+    void logger::Info(const std::string& msg)
     {
         std::cout << "[INFO] " << msg << std::endl;
     }
 
-    void Error(const std::string& msg)
+    void logger::Warning(const std::string& msg)
+    {
+        std::cout << "[WARNING] " << msg << std::endl;
+    }
+
+    void logger::Error(const std::string & msg)
     {
         std::cerr << "[ERROR] " << msg << std::endl;
     }

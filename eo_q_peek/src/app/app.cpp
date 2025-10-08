@@ -43,11 +43,55 @@ namespace app
     void App::Run()
     {
         MSG msg = {};
-        while (GetMessage(&msg, nullptr, 0, 0)) {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
+        while (true) 
+        {
+            while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) 
+            {
+                if (msg.message == WM_QUIT) 
+                {
+                    logger::Info("Received WM_QUIT message.");
+                    return;
+                }
 
-        logger::Info("Exiting message loop.");
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+			}
+
+            if (!IsWindow(m_target))
+            {
+                logger::Warning("Target window no longer exists. Exiting app.");
+                PostQuitMessage(0);
+                return;
+            }
+
+            UpdateFocusState();
+
+			// prevents high CPU usage
+			Sleep(100);
+        }
     }
+
+    void App::UpdateFocusState()
+    {
+        HWND fg = GetForegroundWindow();
+
+        if (fg == m_target)
+        {
+            if (!m_isTargetFocused)
+            {
+                m_thumbnail.Hide();
+                m_isTargetFocused = true;
+                logger::Info("Target focused.");
+            }
+        }
+        else
+        {
+            if (m_isTargetFocused)
+            {
+                m_thumbnail.Show();
+                m_isTargetFocused = false;
+                logger::Info("Target unfocused.");
+            }
+        }
+	}
 }
